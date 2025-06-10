@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poz-bruk - Kostka Brukowa, Układanie Kostki, Brukarstwo Tychy i Śląsk</title>
+    <meta name="description" content="Profesjonalne usługi brukarskie w Tychach i na Śląsku. Układanie kostki brukowej, tarasy, podjazdy, chodniki. Poz-bruk to gwarancja jakości i trwałości. Skontaktuj się po bezpłatną wycenę!">
+    <meta name="keywords" content="kostka brukowa, układanie kostki, bruk, brukarstwo, poz-bruk, Tychy, Śląsk, podjazdy, tarasy, chodniki, nawierzchnie, firma brukarska, wycena kostki">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="_assets/images/3e77f8b1031b1c0f947ef1b9b3247ad6.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="_assets/images/6c0784fb6ee41f824ce2e50c3bfda591.png" sizes="180x180">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Reset / Base */
+        * {
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
+        img { /* Global responsive image rule */
+            max-width: 100%;
+            height: auto;
+            display: block; /* Removes extra space below image */
+        }
+
+        /* General Body and Container Styles */
+        body {
+            font-family: 'Lato', Arial, sans-serif; /* Readable body font */
+            line-height: 1.8; /* Increased line height for better readability */
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Fallback background color, visible when dynamic background fades */
+            color: #4a4a4a; /* Dark grey for main text */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            position: relative; /* For z-indexing of other elements */
+        }
+
+        /* Global Fixed Background Image Container */
+        .global-background-image-container {
+            position: fixed; /* Fixed so it covers the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide any overflow of the image itself */
+            z-index: -2; /* Send it to the very back, behind content and hero section */
+            background-image: url('tlo.png'); /* Obrazek tła wizytówki */
+            background-size: cover; /* Pokryj cały kontener */
+            background-position: center; /* Wyśrodkuj obraz */
+            background-repeat: no-repeat; /* Zapobiegaj powtarzaniu */
+            filter: grayscale(80%) brightness(1.1) opacity(0.25) blur(3px); /* Dodano blur(3px) z powrotem */
+        }
+
+        /* --- Main Navigation Bar --- */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* High z-index to be above content */
+            display: flex;
+            justify-content: center; /* Default: centered for mobile-first approach */
+            align-items: center;
+            padding: 10px 20px; /* Zwiększono padding poziomy dla lepszego dopasowania */
+            height: 90px; /* Fixed height for consistent spacing, adjusted for larger logo */
+            transition: background-color 0.3s ease;
+        }
+
+        @media (min-width: 993px) { /* Desktop only */
+            .main-nav {
+                justify-content: space-between; /* Space out logo and menu on desktop */
+            }
+            .main-nav .nav-brand {
+                margin-right: 20px; /* Space from menu */
+            }
+            .main-nav .nav-links {
+                flex-grow: 1; /* Allow menu to take space */
+                display: flex !important; /* Ensure it's flex on desktop, override mobile default */
+            }
+            .hamburger-menu {
+                display: none !important; /* Hide hamburger on desktop, override mobile default */
+            }
+        }
+
+        .main-nav .nav-brand {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0; /* Prevent shrinking on smaller screens */
+        }
+
+        .main-nav .nav-brand .nav-logo-link img {
+            max-width: 300px; /* Logo na desktopie zmniejszone dla lepszego dopasowania */
+            height: auto;
+            border-radius: 8px; /* Maintain rounded corners */
+        }
+
+        .main-nav .nav-links {
+            display: none; /* Hidden by default on mobile, shown by JS when active */
+            list-style: none;
+            margin: 0; /* Reset margin */
+            padding: 0;
+            flex-grow: 1; /* Allow menu to take space */
+            justify-content: center; /* Wyśrodkuj elementy li wewnątrz nav-links */
+            white-space: nowrap; /* Prevent text wrapping on desktop */
+        }
+
+        .main-nav .nav-links li {
+            margin: 0 10px; /* Odstęp między elementami menu */
+        }
+
+        .main-nav .nav-links a {
+            color: #34495e; /* Darker blue/grey for links */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav .nav-links a::after { /* Underline effect */
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -5px;
+            left: 0; /* Zaczyna się od początku */
+            background-color: #007bff; /* Blue for hover underline */
+            transition: width 0.3s ease-out;
+        }
+
+        .main-nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu - visible on mobile */
+        .hamburger-menu {
+            display: flex; /* Always flex (visible) on mobile */
+            flex-direction: row; /* Kreski i tekst w jednej linii */
+            justify-content: flex-start; /* Ułóż elementy od lewej */
+            align-items: center; /* Wyśrodkuj pionowo */
+            width: auto; /* Szerokość dopasowana do zawartości */
+            height: 25px; /* Wysokość dla kresek */
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001; /* Above nav links when active */
+            flex-shrink: 0; /* Prevent shrinking */
+            margin-left: 20px; /* Space from logo on mobile default */
+        }
+
+        .hamburger-menu .bar {
+            width: 30px; /* Długość kresek */
+            height: 3px;
+            background-color: #34495e;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu .menu-text {
+            color: #34495e;
+            font-size: 1.1em;
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 8px; /* Odstęp między kreskami a tekstem */
+        }
+        /* Animacja hamburgera */
+        .hamburger-menu.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-menu.active .bar:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+
+        /* Hero Section (the large image that fades) */
+        #hero-section {
+            height: 100vh; /* Make hero section full viewport height initially */
+            background-image: url('wizytowka.png'); /* Używa obrazu wizytówki w sekcji hero */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Allows z-index for content above it */
+            z-index: 0; /* Below fixed elements, above global background */
+            opacity: 1; /* Initial opacity, controlled by JS */
+            transition: opacity 0.3s ease-out; /* Smooth transition for fading */
+            display: flex;
+            justify-content: flex-end; /* Align content to the bottom of the flex container */
+            align-items: center; /* Center horizontally */
+            flex-direction: column;
+            text-align: center;
+            color: white; /* Text color for hero content if any */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Shadow for readability */
+            padding-bottom: 100px; /* Space from the very bottom of the viewport */
+            padding-top: 90px; /* Minimal padding-top, content is pushed down by flex-end */
+        }
+
+        /* Usunięto h1 z sekcji hero */
+
+        #hero-section .hero-subtitle-box { /* White rectangle for subtitle */
+            background-color: rgba(255, 255, 255, 0.85); /* White with some transparency */
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin-top: 0; /* Controlled by flexbox */
+            margin-bottom: 30px; /* Space between box and button */
+            max-width: 80%; /* Limit width */
+            width: fit-content; /* Adjust to content */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px); /* Optional: adds a slight blur effect */
+            display: inline-block; /* To contain content and allow max-width */
+        }
+
+        #hero-section .hero-subtitle-box p {
+            color: #333; /* Darker text inside the white box */
+            font-size: 1.2em; /* Adjusted font size for clarity */
+            margin: 0; /* Remove default paragraph margin */
+        }
+
+        /* Action Button - General Styles (re-organized for clarity and priority) */
+        .action-button {
+            display: inline-block;
+            background-color: #007bff; /* Default blue for other buttons */
+            color: #ffffff !important; /* Ensure white text */
+            padding: 18px 40px;
+            font-size: 1.5em;
+            text-decoration: none !important; /* No underline by default and important to override */
+            border-radius: 50px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .action-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4);
+            text-decoration: none !important; /* No underline on hover and important to override */
+            color: #ffffff !important; /* Ensure white text on hover */
+        }
+        /* Specific styles for the hero section's action button (green) */
+        #hero-section .action-button {
+            background-color: #28a745 !important; /* Zmieniono na zielony, z !important */
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3) !important; /* Zmieniono na zielony cień, z !important */
+            margin-top: 0; /* Adjusted margin, controlled by hero-subtitle-box */
+        }
+
+        #hero-section .action-button:hover {
+            background-color: #218838 !important; /* Ciemniejszy zielony na hover, z !important */
+            box-shadow: 0 8px 16px rgba(40, 167, 69, 0.4) !important; /* Zmieniono na zielony cień, z !important */
+        }
+
+        /* Force removal of ::after pseudo-element for all action buttons */
+        .action-button::after {
+            content: none !important; /* This is the key to remove the blue line */
+            width: 0 !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+
+        /* Main Content Container */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto; /* More margin to lift it from edges */
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for content readability */
+            border-radius: 12px; /* Slightly more rounded */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer, subtle shadow */
+            overflow: hidden; /* Ensures content stays within rounded corners */
+            position: relative; /* Ensure it's above the background */
+            z-index: 1; /* Make sure content is above hero section after fade */
+        }
+
+        /* Header (now inside container) styles - keep as is, it's not the hero section anymore */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, rgba(224, 234, 252, 0.7) 0%, rgba(207, 223, 243, 0.7) 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        header h1 { /* Specific for header inside container */
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e50;
+            font-size: 2.5em; /* Smaller than hero H1 */
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+        header p { /* Specific for header inside container */
+            color: #555555;
+            font-size: 1.2em;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #34495e;
+            font-size: 2.5em;
+            margin-top: 60px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Paragraphs and Lists */
+        p {
+            margin-bottom: 1.5em;
+            font-size: 1.1em;
+            color: #4a4a4a;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 2em;
+        }
+        ul li {
+            margin-bottom: 15px;
+            padding-left: 0;
+            position: relative;
+            font-size: 1.1em;
+            color: #555555;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            border-top: 1px solid #e9ecef;
+            margin: 50px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            vertical-align: middle;
+            color: #4a4a4a;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #34495e;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95em;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .note {
+            text-align: center;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.3em;
+            color: #dc3545;
+            padding: 10px 0;
+        }
+
+        /* Links (General) */
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #f2f2f2;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        #contact p {
+            margin-bottom: 15px;
+            font-size: 1.15em;
+            color: #333333;
+        }
+        #contact h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* Image Placeholders (Generic) */
+        .image-placeholder {
+            width: 100%;
+            max-width: 700px;
+            height: 350px;
+            background-color: #e9ecef;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888888;
+            font-size: 1.6em;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 60px;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9em;
+            color: #888888;
+        }
+
+        /* Scroll Animation Styles */
+        .hidden-section {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Re-add transition to hidden state for smooth disappearance */
+        }
+        .show-section {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Fixed Contact Arrow */
+        .contact-arrow {
+            position: fixed;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%) translateX(0);
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 15px 15px;
+            text-decoration: none;
+            border-radius: 8px 0 0 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            letter-spacing: 2px;
+        }
+
+        .contact-arrow:hover {
+            background-color: #218838;
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        /* Special Animated Image Section (Call to Action) */
+        #special-image-section {
+            padding: 50px 30px;
+            text-align: center;
+            margin-top: 80px;
+            background-color: #f2f2f2;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        #special-image-section.show-section {
+            opacity: 1;
+            transform: scale(1);
+        }
+        #special-image-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #007bff;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        #special-image-section p {
+            color: #555555;
+            font-size: 1.15em;
+            margin-bottom: 30px;
+        }
+        #special-image-section .special-image {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background-color: #e0eafc;
+            margin: 30px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999999;
+            font-size: 1.3em;
+        }
+        #special-image-section .special-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Project Configurator Styles */
+        #project-configurator {
+            background-color: #eaf0f8;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 80px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        #project-configurator h2 {
+            color: #007bff;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        .configurator-controls {
+            margin-bottom: 30px;
+        }
+        .configurator-controls button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+        }
+        .configurator-controls button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .configurator-controls button.active {
+            background-color: #28a745;
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.3);
+        }
+        .configurator-display {
+            margin-top: 30px;
+        }
+        .configurator-image-container {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            background-color: #e0eafc;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999999;
+            font-size: 1.3em;
+        }
+        .configurator-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .configurator-description {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            min-height: 100px;
+            text-align: left;
+            color: #4a4a4a;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .configurator-description.loading {
+            background-color: #f0f0f0;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* --- Scroll Offset Compensation --- */
+        /* Applied to all sections that can be linked to from the menu */
+        #what-are-cpm-rails,
+        #benefits,
+        #indications,
+        #pricelist,
+        #contact,
+        #special-image-section,
+        #project-configurator {
+            scroll-margin-top: 90px; /* Adjust for desktop nav height */
+        }
+
+
+        /* Responsive Adjustments (Media Queries) */
+        @media (max-width: 992px) {
+            .main-nav {
+                height: 70px;
+                padding: 10px 15px; /* Dopasowanie padding dla tabletów */
+                justify-content: center; /* Wyśrodkuj zawartość nav na mobile (logo + hamburger) */
+            }
+            .main-nav .nav-brand {
+                margin-right: 15px; /* Zapewnij odstęp między logo a hamburgerem */
+            }
+            .main-nav .nav-brand .nav-logo-link img {
+                max-width: 250px;
+            }
+            #hero-section {
+                height: 80vh; /* Zmniejszona wysokość dla tabletów */
+                padding-top: 40vh; /* Dostosowanie padding-top dla tabletów */
+            }
+            #hero-section .hero-subtitle-box {
+                font-size: 1.2em;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            header p {
+                font-size: 1.1em;
+            }
+            h2 {
+                font-size: 2.2em;
+            }
+            .container {
+                margin: 20px auto;
+                padding: 25px;
+            }
+            .image-placeholder {
+                height: 300px;
+            }
+            #special-image-section .special-image {
+                height: 250px;
+            }
+            #project-configurator {
+                padding: 30px;
+            }
+            .configurator-image-container {
+                height: 300px;
+            }
+
+            /* Tablet/Mobile specific navigation - hamburger menu */
+            .main-nav .nav-links {
+                display: none; /* Hide nav links by default on smaller screens */
+                flex-direction: column; /* Revert to column for mobile dropdown */
+                position: absolute;
+                top: 70px; /* Below nav bar height */
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid #eee;
+                padding: 20px 0;
+                max-height: calc(100vh - 70px); /* Max height to fit viewport */
+                overflow-y: auto;
+                gap: 0; /* No gap for column layout */
+                margin: 0; /* Reset margins for column layout */
+                justify-content: flex-start; /* Reset justify-content for column layout */
+            }
+            .main-nav .nav-links.active { /* Show when hamburger is active */
+                display: flex;
+            }
+            .main-nav .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .main-nav .nav-links a {
+                font-size: 1.2em;
+                padding: 10px 0;
+                display: block; /* Make link full width */
+            }
+            .hamburger-menu {
+                display: flex !important; /* Show hamburger, override desktop default */
+                margin-left: 15px; /* Ensure space between logo and hamburger on mobile */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                height: 60px;
+                padding: 10px 10px; /* Dopasowanie padding dla mniejszych tabletów */
+                justify-content: center; /* Wyśrodkuj zawartość nav na mobile (logo + hamburger) */
+            }
+            .main-nav .nav-brand {
+                margin-right: 10px; /* Mniejszy odstęp między logo a hamburgerem */
+            }
+            .main-nav .nav-brand .nav-logo-link img {
+                max-width: 150px; /* Smaller logo on mobile */
+            }
+            #hero-section {
+                height: 70vh; /* Zmniejszona wysokość dla telefonów */
+                padding-top: 35vh; /* Dostosowanie padding-top dla telefonów */
+            }
+            #hero-section .hero-subtitle-box {
+                font-size: 1em;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            .action-button {
+                padding: 15px 30px;
+                font-size: 1.3em;
+            }
+            ul li {
+                padding-left: 0;
+                font-size: 1em;
+            }
+            .image-placeholder {
+                height: 250px;
+                margin: 30px auto;
+            }
+            .contact-arrow {
+                right: -5px;
+                padding: 12px 10px;
+                font-size: 0.9em;
+            }
+            .contact-arrow:hover {
+                transform: translateY(-50%) translateX(-10px);
+            }
+            #special-image-section {
+                padding: 40px 20px;
+                margin-top: 50px;
+            }
+            #special-image-section h3 {
+                font-size: 1.8em;
+            }
+            #special-image-section .special-image {
+                height: 200px;
+            }
+            #project-configurator {
+                padding: 20px;
+            }
+            .configurator-image-container {
+                height: 250px;
+            }
+            .configurator-controls button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            /* Tablet/Mobile specific navigation - hamburger menu */
+            .main-nav .nav-links li {
+                margin: 8px 0; /* Dostosuj odstęp dla listy pionowej */
+            }
+            .main-nav .nav-links a {
+                font-size: 1.1em; /* Dostosuj rozmiar czcionki */
+            }
+            .hamburger-menu .menu-text {
+                font-size: 1em;
+            }
+
+            /* Adjust scroll anchor for sections on smaller mobile */
+            #what-are-cpm-rails,
+            #benefits,
+            #indications,
+            #pricelist,
+            #contact,
+            #special-image-section,
+            #project-configurator {
+                scroll-margin-top: 60px; /* Adjust for smaller nav height */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-nav {
+                height: 50px;
+                padding: 8px 8px; /* Dopasowanie padding dla najmniejszych ekranów */
+                justify-content: center; /* Wyśrodkuj zawartość nav na mobile (logo + hamburger) */
+            }
+            .main-nav .nav-brand {
+                margin-right: 8px; /* Mniejszy odstęp między logo a hamburgerem */
+            }
+            .main-nav .nav-brand .nav-logo-link img {
+                max-width: 100px; /* Even smaller on tiny screens */
+            }
+            #hero-section {
+                height: 60vh; /* Jeszcze mniejsza wysokość dla małych telefonów */
+                padding-top: 30vh; /* Dostosowanie padding-top dla małych telefonów */
+            }
+            #hero-section .hero-subtitle-box {
+                font-size: 0.9em;
+            }
+            header h1 {
+                font-size: 1.5em;
+                letter-spacing: 1px;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.5em;
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+            p, ul li, table, .note {
+                font-size: 0.95em;
+            }
+            .action-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            th, td {
+                padding: 10px;
+            }
+            .image-placeholder {
+                height: 180px;
+                margin: 25px auto;
+            }
+            .contact-arrow {
+                display: none;
+            }
+            #special-image-section {
+                padding: 30px 15px;
+                margin-top: 40px;
+            }
+            #special-image-section h3 {
+                font-size: 1.5em;
+            }
+            #special-image-section .special-image {
+                height: 160px;
+            }
+            #project-configurator {
+                padding: 15px;
+            }
+            .configurator-image-container {
+                height: 200px;
+            }
+            .configurator-controls button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            /* Tablet/Mobile specific navigation - hamburger menu */
+            .main-nav .nav-links li {
+                margin: 6px 0; /* Dostosuj odstęp dla listy pionowej */
+            }
+            .main-nav .nav-links a {
+                font-size: 1em; /* Dostosuj rozmiar czcionki */
+            }
+            .hamburger-menu .menu-text {
+                font-size: 0.9em;
+            }
+            /* Adjust scroll anchor for sections on smallest mobile */
+            #what-are-cpm-rails,
+            #benefits,
+            #indications,
+            #pricelist,
+            #contact,
+            #special-image-section,
+            #project-configurator {
+                scroll-margin-top: 50px; /* Adjust for smallest nav height */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-background-image-container">
+        </div>
+
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <a href="#hero-section" class="nav-logo-link">
+                <img src="logo2.png" alt="Logo Poz-bruk">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#what-are-cpm-rails">Usługi</a></li>
+            <li><a href="#benefits">Dlaczego My?</a></li>
+            <li><a href="#indications">Realizacje</a></li>
+            <li><a href="#pricelist">Cennik</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#project-configurator">Wizualizator</a></li>
+        </ul>
+        <button class="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="menu-text">MENU</span> </button>
+    </nav>
+    <section id="hero-section">
+        <div class="hero-subtitle-box"> <p>Profesjonalizm i doświadczenie w układaniu kostki brukowej.</p>
+        </div>
+        <a href="#contact" class="action-button">Darmowa wycena!</a>
+    </section>
+
+    <div class="container">
+        <hr>
+
+        <section id="what-are-cpm-rails" class="hidden-section">
+            <h2>Nasze Usługi Brukarskie</h2>
+            <div class="image-placeholder">
+                <img src="https://placehold.co/700x350/e9ecef/888888?text=Ukladanie+Kostki" alt="Zdjęcie przedstawiające układanie kostki brukowej">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+
+        <hr>
+
+        <section id="benefits" class="hidden-section">
+            <h2>Dlaczego Wybrać Poz-bruk?</h2>
+            <div class="image-placeholder">
+                <img src="https://placehold.co/700x350/e9ecef/888888?text=Jakosc+i+Doswiadczenie" alt="Ilustracja jakości i doświadczenia w brukarstwie">
+            </div>
+            <ul>
+                <li><strong>Doświadczenie i Profesjonalizm:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li><strong>Indywidualne Podejście:</strong> Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li><strong>Terminowość i Precyzja:</strong> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                <li><strong>Konkurencyjne Ceny:</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section id="indications" class="hidden-section">
+            <h2>Nasze Realizacje</h2>
+            <div class="image-placeholder">
+                <img src="https://placehold.co/700x350/e9ecef/888888?text=Gotowe+Projekty" alt="Galeria ukończonych projektów brukarskich">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <ul>
+                <li>Podjazdy z kostki brukowej</li>
+                <li>Tarasy i ścieżki ogrodowe</li>
+                <li>Chodniki i parkingi</li>
+                <li>Elementy małej architektury</li>
+                <li>Renowacja starych nawierzchni</li>
+                <li>Inne niestandardowe projekty</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section id="pricelist" class="hidden-section">
+            <h2>Przykładowy Cennik Usług</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rodzaj Usługi</th>
+                        <th>Cena (PLN/m²)</th>
+                        <th>Uwagi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Układanie kostki (standard)</td>
+                        <td>Lorem</td>
+                        <td>Ipsum dolor</td>
+                    </tr>
+                    <tr>
+                        <td>Przygotowanie podłoża</td>
+                        <td>Sit amet</td>
+                        <td>Consectetur</td>
+                    </tr>
+                    <tr>
+                        <td>Obrzeża i krawężniki</td>
+                        <td>Adipiscing</td>
+                        <td>Elit</td>
+                    </tr>
+                    <tr>
+                        <td>Montaż odwodnienia</td>
+                        <td>Tempor</td>
+                        <td>Incididunt</td>
+                    </tr>
+                    <tr>
+                        <td>Specjalne wzory</td>
+                        <td>Ut labore</td>
+                        <td>Et dolore</td>
+                    </tr>
+                    <tr>
+                        <td>Renowacja</td>
+                        <td>Minim</td>
+                        <td>Veniam</td>
+                    </tr>
+                    <tr>
+                        <td>Usługi dodatkowe</td>
+                        <td>Exercitation</td>
+                        <td>Ullamco</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note"><strong>Indywidualna wycena po oględzinach terenu!</strong></p>
+        </section>
+
+        <hr>
+
+        <section id="special-image-section" class="hidden-section">
+            <h3>Zrealizuj swój projekt z Poz-bruk!</h3>
+            <div class="special-image">
+                <img src="https://placehold.co/500x300/e0eafc/999999?text=Projekt+Twoich+Marzen" alt="Wizualizacja nowoczesnego podjazdu z kostki brukowej">
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <a href="#contact" class="action-button">Poproś o wycenę</a>
+        </section>
+
+        <hr>
+
+        <section id="contact" class="hidden-section">
+            <h2>Kontakt</h2>
+            <p>Masz pytania lub chcesz umówić się na bezpłatną wycenę?</p>
+            <p>Skontaktuj się z nami!</p>
+            <p>Telefon: <a href="tel:+48123456789">+48 123 456 789</a></p>
+            <p>Email: <a href="mailto:kontakt@pozbruk.pl">kontakt@pozbruk.pl</a></p>
+            <p>Adres: Tychy, ul. Brukowa 15</p>
+        </section>
+
+        <hr>
+        <section id="project-configurator" class="hidden-section">
+            <h2>Wizualizator Projektu Brukarskiego</h2>
+            <p>Wybierz rodzaj projektu, aby zobaczyć inspirujące zdjęcia i dowiedzieć się więcej!</p>
+            <div class="configurator-controls">
+                <button data-project="podjazd" class="active">Podjazd</button>
+                <button data-project="taras">Taras</button>
+                <button data-project="sciezka">Ścieżka</button>
+                <button data-project="murki">Murki Ogrodowe</button>
+            </div>
+            <div class="configurator-display">
+                <div class="configurator-image-container">
+                    <img id="project-image" src="https://placehold.co/600x350/e0eafc/999999?text=Wybierz+Projekt" alt="Wizualizacja projektu">
+                </div>
+                <div id="project-description" class="configurator-description loading">
+                    Wybierz rodzaj projektu powyżej, aby zobaczyć inspiracje i przeczytać szczegółowy opis.
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Poz-bruk. Wszelkie prawa zastrzeżone.</p>
+        </footer>
+    </div>
+
+    <a href="#contact" class="contact-arrow">
+        Kontakt
+    </a>
+
+    <script>
+        // JavaScript for scroll animation (IntersectionObserver)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.hidden-section'); // Select all sections with the initial hidden class
+
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px', // No margin around the root
+                threshold: 0.15 // Trigger when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-section');
+                    } else {
+                        // If the section is not intersecting, hide it again
+                        entry.target.classList.remove('show-section');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe each hidden section
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Hero Section Fading Logic
+            const heroSection = document.getElementById('hero-section');
+            if (heroSection) {
+                const heroHeight = heroSection.offsetHeight;
+
+                window.addEventListener('scroll', () => {
+                    const scrollPosition = window.scrollY;
+                    let opacity = 1 - (scrollPosition / (heroHeight * 0.7));
+                    if (opacity < 0) opacity = 0;
+                    if (opacity > 1) opacity = 1;
+                    heroSection.style.opacity = opacity;
+                });
+            }
+
+            // --- Hamburger Menu Logic ---
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburgerMenu) {
+                hamburgerMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    hamburgerMenu.classList.toggle('active');
+                });
+
+                // Close menu when a link is clicked (for single-page navigation)
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('active')) { // Only close if active
+                            navLinks.classList.remove('active');
+                            hamburgerMenu.classList.remove('active');
+                        }
+                    });
+                });
+            }
+            // --- End Hamburger Menu Logic ---
+
+
+            // Project Configurator Logic
+            const projectButtons = document.querySelectorAll('.configurator-controls button');
+            const projectImage = document.getElementById('project-image');
+            const projectDescription = document.getElementById('project-description');
+
+            const projectData = {
+                podjazd: {
+                    image: "https://placehold.co/600x350/e0eafc/999999?text=Podjazd+Kostka",
+                    prompt: "Opisz projekt podjazdu z kostki brukowej, w tym zalety, materiały, styl i na co zwrócić uwagę przy realizacji. Tekst powinien być profesjonalny i zachęcający dla klienta firmy brukarskiej Poz-bruk, długość do 150 słów."
+                },
+                taras: {
+                    image: "https://placehold.co/600x350/e0eafc/999999?text=Taras+Kostka",
+                    prompt: "Opisz projekt tarasu z kostki brukowej, w tym zalety, możliwości aranżacyjne i na co zwrócić uwagę przy realizacji. Tekst powinien być profesjonalny i zachęcający dla klienta firmy brukarskiej Poz-bruk, długość do 150 słó."
+                },
+                sciezka: {
+                    image: "https://placehold.co/600x350/e0eafc/999999?text=Sciezka+Kostka",
+                    prompt: "Opisz projekt ścieżki ogrodowej z kostki brukowej, w tym zalety, funkcjonalność, estetykę i na co zwrócić uwagę przy realizacji. Tekst powinien być profesjonalny i zachęcający dla klienta firmy brukarskiej Poz-bruk, długość do 150 słów."
+                },
+                murki: {
+                    image: "https://placehold.co/600x350/e0eafc/999999?text=Murki+Ogrodowe",
+                    prompt: "Opisz projekt murków ogrodowych z kostki brukowej, w tym ich zastosowania, estetykę i na co zwrócić uwagę przy realizacji. Tekst powinien być profesjonalny i zachęcający dla klienta firmy brukarskiej Poz-bruk, długość do 150 słów."
+                }
+            };
+
+            const fetchProjectDescription = async (projectType) => {
+                projectDescription.classList.add('loading');
+                projectDescription.innerHTML = 'Ładuję opis... Proszę czekać.'; // Loading indicator
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: projectData[projectType].prompt }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide the API key
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        projectDescription.innerHTML = text;
+                    } else {
+                        projectDescription.innerHTML = "Nie udało się załadować opisu. Spróbuj ponownie.";
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    projectDescription.innerHTML = "Wystąpił błąd podczas ładowania opisu.";
+                    console.error("Error fetching description:", error);
+                } finally {
+                    projectDescription.classList.remove('loading');
+                }
+            };
+
+            const updateProjectDisplay = (projectType) => {
+                // Update image
+                projectImage.style.opacity = 0; // Fade out current image
+                setTimeout(() => {
+                    projectImage.src = projectData[projectType].image;
+                    projectImage.alt = `Przykładowy projekt: ${projectType}`;
+                    projectImage.style.opacity = 1; // Fade in new image
+                }, 200); // Wait for fade-out
+
+                // Fetch and update description
+                fetchProjectDescription(projectType);
+            };
+
+            projectButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    projectButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    // Update display based on data-project attribute
+                    updateProjectDisplay(button.dataset.project);
+                });
+            });
+
+            // Initialize with the first project type
+            updateProjectDisplay('podjazd');
+        });
+    </script>
+
+</body>
+</html>
